@@ -21,8 +21,8 @@
 
         <ion-label>Medida en Centimetros</ion-label>
         <ion-select value="brown" ok-text="Ok" cancel-text="cancelar" v-model="data.medida">
-          <template v-for="i in 70">
-            <ion-select-option :value="i+50">{{ i + 50 }}</ion-select-option>
+          <template v-for="i in 7">
+            <ion-select-option :value="(i+5)*10">{{ (i + 5) * 10 }}</ion-select-option>
           </template>
         </ion-select>
       </ion-item>
@@ -55,7 +55,7 @@
             <div>
               <br>
               <ion-title>Llevas</ion-title>
-              <ion-title>{{data.numArboles }}</ion-title>
+              <ion-title>{{ data.numArboles }}</ion-title>
               <ion-title>Arboles</ion-title>
               <ion-title>Registrados</ion-title>
             </div>
@@ -129,16 +129,11 @@ export default defineComponent({
     const guardaMedida = async (newMedida: number) => {
       var nombre = await store.dispatch("newArbol", newMedida);
 
-
       presentAlert(nombre)
 
       data.medida = 0
       data.numArboles = store.getters.getN_arboles
     };
-    const exitCount = () => {
-      console.log("pasando a tab2")
-      router.push('/tabs/tab2')
-    }
 
     return {
 
@@ -146,7 +141,6 @@ export default defineComponent({
       clipboard,
       guardaMedida,
       data,
-      exitCount
     }
   }
   ,
@@ -171,6 +165,5 @@ export default defineComponent({
   }
   ,
 
-})
-;
+});
 </script>

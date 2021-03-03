@@ -2,18 +2,17 @@
   <ion-page>
     <ion-tabs>
       <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="tab1" href="/conteo/tab1">
-          <ion-icon :icon="pencil"/>
-
-          <ion-label>Contar</ion-label>
+        <ion-tab-button tab="tab1" href="/corte/tab1">
+          <ion-icon :icon="cut"/>
+          <ion-label>Cortar</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="tab2" href="/conteo/tab2">
+        <ion-tab-button tab="tab2" href="/corte/tab2">
           <ion-icon :icon="clipboard"/>
           <ion-label>Resumen</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="tab3" href="/conteo/tab3">
+        <ion-tab-button tab="tab3" href="/corte/tab3">
           <ion-icon :icon="cloudUpload"/>
 
           <ion-label>Publicar</ion-label>
@@ -25,7 +24,7 @@
 
 <script lang="ts">
 import {IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage} from '@ionic/vue';
-import {ellipse, square, triangle, pencil, clipboard, cloudUpload} from 'ionicons/icons';
+import {ellipse, square, triangle, cut, clipboard, cloudUpload} from 'ionicons/icons';
 
 export default {
   name: 'Tabs',
@@ -35,7 +34,7 @@ export default {
       ellipse,
       square,
       triangle,
-      pencil,
+      cut,
       clipboard,
       cloudUpload
 

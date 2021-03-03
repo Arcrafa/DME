@@ -28,11 +28,11 @@
 
           <ion-list>
             <ion-item>
-              <ion-title>Rango : Cantidad</ion-title>
+              <ion-title>equpo : cantidad</ion-title>
               <br>
             </ion-item>
-            <ion-item v-for="r in store.getters.getResumenArboles">
-              <ion-title>Rango {{ r.rango }}: {{ r.cant }}</ion-title>
+            <ion-item v-for="r in store.getters.getResumenTucas.equipo">
+              <ion-title>Rango {{ r.equipo }}: {{ r.cant }}</ion-title>
               <br>
             </ion-item>
 

@@ -4,7 +4,8 @@ const store = createStore({
     state() {
         return {
             arboles: [],
-            finca: ''
+            finca: '',
+            tucas: [],
 
         }
     },
@@ -17,7 +18,9 @@ const store = createStore({
             state.finca = nombre
             console.log(state.finca)
         },
-
+        newTuca(state: any, newtuca: object) {
+            state.tucas.push(newtuca)
+        }
     },
 
     actions: {
@@ -35,6 +38,9 @@ const store = createStore({
             context.commit('newArbol', {id, rango, medida})
 
             return id;
+        },
+        newTuca(context:any,tuca:object){
+            context.commit('newTuca',tuca)
         }
     },
     getters: {
@@ -48,7 +54,7 @@ const store = createStore({
         getFinca: (state) => {
             return state.finca
         },
-        getResumen: (state) => {
+        getResumenArboles: (state) => {
             var resumen = [
                 {rango: 50, cant: 0},
                 {rango: 60, cant: 0},
@@ -58,11 +64,62 @@ const store = createStore({
                 {rango: 100, cant: 0},
                 {rango: 110, cant: 0},
                 {rango: 120, cant: 0}]
-            if (state.arboles.length==0) return resumen
-            resumen.forEach((r)=>{
-                r.cant=state.arboles.filter(
+            if (state.arboles.length == 0) return resumen
+            resumen.forEach((r) => {
+                r.cant = state.arboles.filter(
                     (arbol: { id: string, rango: number, medida: number }) => {
-                        if (arbol.rango == r.rango ) return true;
+                        if (arbol.rango == r.rango) return true;
+                        else return false;
+                    }).length
+            })
+            return resumen
+        },
+        getResumenTucas: (state) => {
+            var resumen = {
+
+                equipo: [
+                    {equipo: 'rojo', cant: 0},
+                    {equipo: 'verde', cant: 0},
+                    {equipo: 'azul', cant: 0},
+                ],
+                tipo: [
+                    {tipo: 'TIPOA', cant: 0},
+                    {tipo: 'TIPOA', cant: 0}
+                ]
+            }
+
+            if (state.tucas.length == 0) return resumen
+            resumen.equipo.forEach((e) => {
+                e.cant = state.tucas.filter(
+                    (tuca: {
+                        nombreArbol: string,
+                        equipo: string,
+                        rango: number,
+                        largo: number,
+                        algura: number,
+                        duramen: number,
+                        nombre: string,
+                        tipo: string,
+                        porcentaje: number
+                    }) => {
+                        if (tuca.equipo == e.equipo) return true;
+                        else return false;
+                    }).length
+            })
+            resumen.tipo.forEach((t) => {
+                t.cant = state.tucas.filter(
+                    (tuca: {
+                        nombreArbol: string,
+                        equipo: string,
+                        rango: number,
+                        largo: number,
+                        algura: number,
+                        duramen: number,
+                        nombre: string,
+                        tipo: string,
+                        porcentaje: number
+                    }) => {
+                        if (tuca.tipo == t.tipo) return true;
                         else return false;
                     }).length
             })

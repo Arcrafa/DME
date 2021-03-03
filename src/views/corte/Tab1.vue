@@ -2,7 +2,7 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>¿Donde vas a contar?</ion-title>
+        <ion-title>¿Donde vas a cortar?</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
@@ -23,7 +23,7 @@
           <br>
           <br>
           <br>
-          <ion-title size="large">Lista de fincas en Conteo</ion-title>
+          <ion-title size="large">Lista de fincas para cortar</ion-title>
 
           <br>
           <ion-list>
@@ -41,7 +41,7 @@
         <br>
         <div v-if="!store.getters.isconFinca">
 
-          <ion-title size="large">Ya estas contando en la finca:</ion-title>
+          <ion-title size="large">Ya estas cortando en la finca:</ion-title>
           <br>
 
           <ion-title> {{ store.getters.getFinca }}</ion-title>
@@ -50,16 +50,16 @@
           <ion-title>Opciones disponibles</ion-title>
           <br>
           <br>
-          <ion-title>-1 Continuar la jornada de conteo</ion-title>
+          <ion-title>-1 Continuar la jornada de corte</ion-title>
           <br>
 
-          <ion-button expand="block" v-on:click="setOpen(true)">Seguir contando</ion-button>
+          <ion-button expand="block" v-on:click="setOpen(true)">Seguir cortando</ion-button>
           <br>
           <br>
-          <ion-title>-2 Terminar la jornada de conteo</ion-title>
+          <ion-title>-2 Terminar la jornada de corte</ion-title>
           <br>
 
-          <ion-button href="/tabs/tab3" expand="block" v-on:click="exitCount()">Dejar de contar</ion-button>
+          <ion-button  expand="block" v-on:click="exitCut(true)">Dejar de contar</ion-button>
           <br>
           <br>
         </div>
@@ -123,14 +123,13 @@ export default {
         store.commit("setFinca", finca)
 
     }
-    const exitCount = () => {
-      console.log("pasando a tab2")
-      router.push('/coteo/tab3')
+    const exitCut = () => {
+      router.push('/corte/tab3')
     }
     const data = {
       content: 'New Content',
     };
-    return {isOpenRef, setOpen, data, store,exitCount}
+    return {isOpenRef, setOpen, data, store,exitCut}
   }
 }
 </script>
