@@ -59,7 +59,7 @@
           <ion-title>-2 Terminar la jornada de corte</ion-title>
           <br>
 
-          <ion-button  expand="block" v-on:click="exitCut(true)">Dejar de contar</ion-button>
+          <ion-button  expand="block" v-on:click="exitCut(true)">Dejar de cortar</ion-button>
           <br>
           <br>
         </div>

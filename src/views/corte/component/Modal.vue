@@ -64,32 +64,34 @@
       <ion-item v-if="data.estadoArbol=='bueno'">
         <ion-label>Algura</ion-label>
         <ion-select value="brown" ok-text="Ok" cancel-text="cancelar" v-model="tuca.algura">
-          <template v-for="i in 50">
-            <ion-select-option :value="i+15">{{ i + 15 }}</ion-select-option>
+          <template v-for="i in 100">
+            <ion-select-option :value="i+40">{{ i + 40 }}</ion-select-option>
           </template>
         </ion-select>
       </ion-item>
       <ion-item v-if="data.estadoArbol=='bueno'">
         <ion-label>Duramen</ion-label>
         <ion-select value="brown" ok-text="Ok" cancel-text="cancelar" v-model="tuca.duramen">
-          <template v-for="i in 50">
-            <ion-select-option :value="i+15">{{ i + 15 }}</ion-select-option>
+          <template v-for="i in 100">
+            <ion-select-option :value="i+40">{{ i + 40 }}</ion-select-option>
           </template>
         </ion-select>
       </ion-item>
       <ion-button expand="block" v-if="data.medida!=0" v-on:click="guardaMedida(data.medida)">Guardar medida
       </ion-button>
-      <ion-button expand="block" v-if="data.estadoArbol=='hueco'||data.estadoArbol=='nocumple'"
-      >Descartar arbol
+      <ion-button expand="block" v-if="data.estadoArbol=='hueco'||data.estadoArbol=='nocumple' "
+                  v-on:click="descartar()">
+        Descartar arbol
       </ion-button>
 
-      <ion-button expand="block"
+      <ion-button expand=" block
+      "
                   v-if="tuca.nombreArbol != '' &&
-              tuca.equipo != '' &&
-              tuca.rango != 0 &&
-              tuca.largo != 0 &&
-              tuca.algura != 0 &&
-              tuca.duramen != 0" v-on:click="guardarTuca()">Guardar tuca
+      tuca.equipo != '' &&
+      tuca.rango != 0 &&
+      tuca.largo != 0 &&
+      tuca.algura != 0 &&
+      tuca.duramen != 0" v-on:click="guardarTuca()">Guardar tuca
       </ion-button>
 
     </ion-card>
@@ -200,17 +202,17 @@ export default defineComponent({
                 text: 'otro arbol',
                 cssClass: 'secondary',
                 handler: () => {
-                  data.estadoArbol=''
-                  tuca.nombreArbol=''
-                  tuca.equipo=''
+                  data.estadoArbol = ''
+                  tuca.nombreArbol = ''
+                  tuca.equipo = ''
                   tuca.tipo = ''
                   tuca.rango = 0
                   tuca.largo = 0
                   tuca.algura = 0
-                  tuca.duramen=0
-                  tuca.porcentaje=0
-                  tuca.nombre=''
-                  data.ntucaArbol=0
+                  tuca.duramen = 0
+                  tuca.porcentaje = 0
+                  tuca.nombre = ''
+                  data.ntucaArbol = 0
                 },
               },
               {
@@ -221,9 +223,9 @@ export default defineComponent({
                   tuca.rango = 0
                   tuca.largo = 0
                   tuca.algura = 0
-                  tuca.duramen=0
-                  tuca.porcentaje=0
-                  tuca.nombre=''
+                  tuca.duramen = 0
+                  tuca.porcentaje = 0
+                  tuca.nombre = ''
                 },
               },
             ],
@@ -252,14 +254,16 @@ export default defineComponent({
     const guardarTuca = async () => {
       data.ntucaArbol += 1;
       tuca.nombre = tuca.nombreArbol + '-' + data.ntucaArbol.toString()
-      tuca.porcentaje = (tuca.algura - tuca.duramen) / tuca.algura
-      tuca.tipo = tuca.porcentaje >= 80 ? 'TIPO-A' : 'TIPO-B'
+      tuca.porcentaje = 1 - (tuca.algura - tuca.duramen) / tuca.algura
+      console.log(tuca.porcentaje)
+      tuca.tipo = tuca.porcentaje >= 0.80 ? 'TIPO-A' : 'TIPO-B'
+      console.log(tuca.tipo)
       presentAlertNombre(tuca.tipo, tuca.nombre)
       store.dispatch("newTuca", tuca);
 
     };
-    const descartar = async () => {
-
+    const descartar = () => {
+      store.dispatch("descartarArbol", {nombre: tuca.nombreArbol, estado: data.estadoArbol})
 
     };
     const exitCount = () => {

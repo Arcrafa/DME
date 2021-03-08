@@ -22,7 +22,7 @@
         <ion-label>Medida en Centimetros</ion-label>
         <ion-select value="brown" ok-text="Ok" cancel-text="cancelar" v-model="data.medida">
           <template v-for="i in 7">
-            <ion-select-option :value="(i+5)*10">{{ (i + 5) * 10 }}</ion-select-option>
+            <ion-select-option :value="(i+4)*10">{{ (i + 4) * 10 }}</ion-select-option>
           </template>
         </ion-select>
       </ion-item>

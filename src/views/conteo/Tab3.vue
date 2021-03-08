@@ -38,17 +38,15 @@ import {
 
 import {} from '@ionic/vue';
 import {caretForwardCircle, close, heart, trash, share, cloudUpload, refreshCircle} from 'ionicons/icons';
+import {useStore} from "vuex";
+
 
 export default {
   name: 'Tab3',
   setup() {
-    return {
-      cloudUpload
-    }
-  },
-  components: {IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonButton, IonIcon, IonCard},
-  methods: {
-    async presentActionSheet() {
+    const store = useStore();
+
+    const presentActionSheet = async () => {
       const actionSheet = await actionSheetController
           .create({
             header: 'Opciones',
@@ -60,6 +58,7 @@ export default {
                 icon: share,
                 handler: () => {
                   console.log('Share clicked')
+                  store.dispatch("publicarConteo")
                 },
               },
               {
@@ -89,7 +88,14 @@ export default {
             ],
           });
       return actionSheet.present();
-    },
-  }
+    }
+    return {
+      cloudUpload,
+      presentActionSheet
+    }
+  },
+  components: {IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonButton, IonIcon, IonCard},
+
+
 }
 </script>

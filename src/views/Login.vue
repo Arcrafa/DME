@@ -8,8 +8,26 @@
 
     <ion-title>Bienvenido</ion-title>
 
-    <ion-card>
+    <ion-card >
+      <br>
+      <br>
+      <ion-item >
+        <ion-button shape="round" href="/conteo" >
+          modulo de conteo
+        </ion-button>
 
+      </ion-item>
+      <br>
+      <br>
+      <ion-item>
+        <ion-button shape="round" href="/corte" >
+          modulo de corte
+        </ion-button>
+
+      </ion-item>
+      <br>
+      <br>
+<!--
       <ion-item>
         <ion-label position="floating">cedula</ion-label>
         <ion-input v-model="form.username" id="username" required></ion-input>
@@ -26,9 +44,10 @@
           Iniciar
         </ion-button>
       </ion-item>
-
+-->
     </ion-card>
-
+    <br>
+    <br>
 
     <ion-img :src="require('/public/assets/static/cropped-logoNew.png')"></ion-img>
     <br>
