@@ -1,7 +1,8 @@
 import {createStore} from 'vuex'
 const axios = require('axios');
 const instance = axios.create({
-    baseURL: 'https://cors-anywhere.herokuapp.com/https://conteo-corte.herokuapp.com/api/',
+    //baseURL: 'https://cors-anywhere.herokuapp.com/https://conteo-corte.herokuapp.com/api/',
+    baseURL:'http://localhost:5000/api/',
     timeout: 10000,
     headers: {'X-Custom-Header': 'foobar'}
 });
@@ -21,7 +22,7 @@ instance.get('/')
 const conteo = {
     state: () => ({arboles: [],}),
     mutations: {
-        newArbol(state: any, idArbol: { id: string }) {
+        newArbol(state: any, idArbol: { id: string,rango:number }) {
             state.arboles.push(idArbol)
         },
         getN_arboles: (state: any) => {
@@ -30,10 +31,8 @@ const conteo = {
 
     },
     actions: {
-        newArbol(context: any, medida: number) {
-            var rango = Math.floor(medida / 10) * 10;
+        newArbol(context: any, rango: number) {
             var indice = 0;
-
 
             indice = context.state.arboles.filter(
                 (arbol: { id: string, rango: number, }) => {
@@ -41,7 +40,7 @@ const conteo = {
                     else return false;
                 }).length + 1
             var id = rango.toString() + '-' + indice.toString()
-            context.commit('newArbol', {id})
+            context.commit('newArbol', {id,rango})
 
             return id;
         },
